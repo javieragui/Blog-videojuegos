@@ -6,13 +6,14 @@
         <div id="usuario-logueado" class="bloque">
             <h3>Bienvenido, <?= $_SESSION['usuario']['nombre'] . ' ' . $_SESSION['usuario']['apellidos']; ?></h3>
             <!-- Botones -->
-            <a class="boton boton-verde" href="cerrar.php">Crear entradas</a>
-            <a class="boton" href="cerrar.php">Crear categoria</a>
-            <a class="boton boton-naranja" href="cerrar.php">Mis datos</a>
+            <a class="boton boton-verde" href="crear-entradas.php">Crear entradas</a>
+            <a class="boton" href="crear-categoria.php">Crear categoria</a>
+            <a class="boton boton-naranja" href="mis-datos.php">Mis datos</a>
             <a class="boton boton-rojo" href="cerrar.php">Cerrar sesión</a>
         </div>
     <?php endif; ?>
 
+    <?php if(!isset($_SESSION['usuario'])): ?>
     <div id="login" class="bloque">
         <h3>Identificate</h3>
 
@@ -38,11 +39,11 @@
         <!-- MOSTRAR ERRORES -->
         <?php if (isset($_SESSION['completado'])): ?>
             <div class="alerta alerta-exito">
-                <?php echo $_SESSION['completado']; ?>
+                <?= $_SESSION['completado']; ?>
             </div>
         <?php elseif (isset($_SESSION['errores']['general'])): ?>
-            <div class="alerta alerta-exito">
-                <?php $_SESSION['errores']['general']; ?>
+            <div class="alerta alerta-error">
+                <?= $_SESSION['errores']['general']; ?>
             </div>
         <?php endif; ?>
 
@@ -67,6 +68,7 @@
         </form>
         <?php borrarErrores(); ?>
     </div>
+    <?php endif; ?>
 </aside>
 
 
